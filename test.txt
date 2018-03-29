@@ -2,3 +2,8 @@ hello alex, this is a test. im writing this from VSCODE. You still need to insta
 VScode at the bottom right corner)
 this is the video I used: https://www.youtube.com/watch?v=9cMWR-EGFuY&t=186s
 and here is another video: https://www.youtube.com/watch?v=i8ZW94SWchE
+
+Before your first commit you will have to config your email address in the terminal using this:
+git config --global user.email "ENTER EMAIL HERE"
+At the video he doesnt tell you that after you select the master branch (at around 6:26) you will need to enter your username and password
+at a box on the top and then click at the thing near the master branch in the blue bar bottom left. If you have any issues during the proccess text me
