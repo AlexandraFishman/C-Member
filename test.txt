@@ -1,0 +1,4 @@
+hello alex, this is a test. im writing this from VSCODE. You still need to install that git extension though (the thing that pops up every time you open
+VScode at the bottom right corner)
+this is the video I used: https://www.youtube.com/watch?v=9cMWR-EGFuY&t=186s
+and here is another video: https://www.youtube.com/watch?v=i8ZW94SWchE
