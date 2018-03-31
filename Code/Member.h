@@ -7,9 +7,10 @@ using namespace std;
 
 class Member{
     static int counter;
+    protected: static int nextID;
     public:
-        vector <Member> followers; //This member's followers
-        vector <Member> following; //Who this member is following
+        vector <Member *> followers; //This member's followers
+        vector <Member *> following; //Who this member is following
          int memberId;
          static int count()
          {
@@ -19,26 +20,21 @@ class Member{
 Member()
 {
      counter++;
-     memberId = counter;
+     memberId = ++nextID;
 }
 
 ~Member()
 {
+    unfollowAll();
     followers.clear();
     following.clear();
-    cout << "destructor " << endl;
-    // counter--;
+    counter--;
 }
 
-bool WhoIsThis(Member &who){
- return (this->memberId == who.memberId);
-}
-
-bool exists(Member &who, vector <Member> flo){
-    vector <Member> :: iterator it;
-
-  for (it = flo.begin(); it != flo.end(); it++) {
-     if(it->WhoIsThis(who))
+bool exists(Member &who, vector <Member *> flo){
+  for (unsigned i=0; i<flo.size(); i++)
+  {
+     if(flo.at(i)->memberId == who.memberId)
             return true;
   }
   return false;
@@ -48,29 +44,41 @@ bool exists(Member &who, vector <Member> flo){
 {
     if(!exists(*this, who.followers))
     { 
-        // cout << "We add avi to benis followers" << endl;
-        who.followers.push_back(*this);
+        who.followers.push_back(this);//(this->memberId);
     }
     if(!exists(who, this->following))
     {
-        // cout << "We add beni to avis following" << endl;
-        this->following.push_back(who);
+        this->following.push_back(&who);//who.memberId);
     }
 }
  void unfollow( Member &who)
 {
     for (unsigned i=0; i<who.followers.size(); i++)
     {
-        if(who.followers.at(i).WhoIsThis(*this))
+        if(who.followers.at(i)->memberId == this->memberId)
             who.followers.erase(who.followers.begin()+ i);
     }
 
    for (unsigned i=0; i< this->following.size(); i++)
     {
-        if(this->following.at(i).WhoIsThis(who))
+        if(this->following.at(i)->memberId == who.memberId)
             this->following.erase(this->following.begin()+ i);
     }
    
+}
+
+void unfollowAll()
+{
+  for (unsigned i=0; i< this->followers.size(); i++)
+  {
+     this->followers.at(i)->unfollow(*this);
+  }
+
+  for (unsigned i=0; i< this->following.size(); i++)
+  {
+      this->unfollow(*this->following.at(i));
+  }
+
 }
 
  int numFollowers()
@@ -85,3 +93,4 @@ bool exists(Member &who, vector <Member> flo){
 };
 
 int Member::counter=0;
+int Member::nextID=0;
