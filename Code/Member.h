@@ -16,13 +16,13 @@ class Member{
          {
              return counter;
          }
-
+//Constructor
 Member()
 {
      counter++;
      memberId = ++nextID;
 }
-
+//Destructor
 ~Member()
 {
     unfollowAll();
@@ -30,7 +30,7 @@ Member()
     following.clear();
     counter--;
 }
-
+//Checks if a member is in a list (follower/following)
 bool exists(Member &who, vector <Member *> flo){
   for (unsigned i=0; i<flo.size(); i++)
   {
@@ -39,8 +39,8 @@ bool exists(Member &who, vector <Member *> flo){
   }
   return false;
 }
-
- void follow(Member &who)
+//Add a member to the following vector and the followers of the other member
+void follow(Member &who)
 {
     if(!exists(*this, who.followers))
     { 
@@ -51,6 +51,8 @@ bool exists(Member &who, vector <Member *> flo){
         this->following.push_back(&who);//who.memberId);
     }
 }
+
+//Unfollow a specific member
  void unfollow( Member &who)
 {
     for (unsigned i=0; i<who.followers.size(); i++)
@@ -66,7 +68,7 @@ bool exists(Member &who, vector <Member *> flo){
     }
    
 }
-
+//Unfollow every Member
 void unfollowAll()
 {
   for (unsigned i=0; i< this->followers.size(); i++)
@@ -80,12 +82,12 @@ void unfollowAll()
   }
 
 }
-
+//Returns the number of followers this Member has
  int numFollowers()
 {
     return this->followers.size();
 }
-
+//Returns the number of people the Memeber is following
  int numFollowing()
 {
     return this->following.size();
