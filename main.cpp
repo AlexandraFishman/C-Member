@@ -32,7 +32,7 @@ int main() {
 
 	cout << chana.numFollowers() << " line 34" << " " <<  chana.numFollowing() << endl; // 0 0
 	test1();
-	cout << chana.numFollowers() << " line 36 " <<" " <<  chana.numFollowing() << endl; // 0 0 -----------------EROR 0 1
-	cout << avi.numFollowers() << " line 37 " << " " <<  avi.numFollowing() << endl; // 0 0 -----------------------Eror 1 0
+	cout << chana.numFollowers() << " line 36 " <<" " <<  chana.numFollowing() << endl; // 0 0 
+	cout << avi.numFollowers() << " line 37 " << " " <<  avi.numFollowing() << endl; // 0 0 
 	cout << "line 38 " << Member::count() << endl; // 3 
 }

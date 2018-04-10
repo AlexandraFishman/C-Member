@@ -11,7 +11,7 @@ class Member{
     public:
         vector <Member *> followers; //This member's followers
         vector <Member *> following; //Who this member is following
-         int memberId;
+        int memberId;
          static int count()
          {
              return counter;
@@ -42,13 +42,15 @@ bool exists(Member &who, vector <Member *> flo){
 //Add a member to the following vector and the followers of the other member
 void follow(Member &who)
 {
-    if(!exists(*this, who.followers))
-    { 
-        who.followers.push_back(this);//(this->memberId);
-    }
-    if(!exists(who, this->following))
-    {
-        this->following.push_back(&who);//who.memberId);
+    if(this->memberId!=who.memberId){//checks if its the same Member
+        if(!exists(*this, who.followers))
+        { 
+            who.followers.push_back(this);//(this->memberId);
+        }
+        if(!exists(who, this->following))
+        {
+            this->following.push_back(&who);//who.memberId);
+        }
     }
 }
 

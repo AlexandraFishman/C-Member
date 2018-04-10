@@ -5,6 +5,8 @@ using namespace std;
 
 #include "Member.h"
 
+/*------unit testing for Member------- */
+
 Member dani, efi, finch;
 
 TEST_CASE("testing Member") {
